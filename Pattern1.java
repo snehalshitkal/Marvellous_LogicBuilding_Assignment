@@ -1,0 +1,50 @@
+/*
+    input : iRow - 4  iCol - 4
+    output:
+
+            *   *   *   #
+            *   *   #   *
+            *   #   *   *
+            #   *   *   *
+ */
+import java.util.*;
+
+class Pattern
+{
+    public void pattern(int iRow, int iCol)
+    {
+        int i  = 0, j = 0;
+
+        for(i =  0; i <= iRow; i++)
+        {
+            for(j = iRow; j >= 0 ; j--)
+            {
+                if(j == i)
+                {
+                    System.out.print("# \t");
+                }
+                else
+                {
+                    System.out.print("* \t");
+                }
+            }
+             System.out.println();
+        }
+    }
+}
+class Pattern1
+{
+    public static void main(String A[])
+    {
+        Scanner sobj = new Scanner(System.in);
+
+        System.out.println("Enter number of Rows");
+        int iRow = sobj.nextInt();
+
+        System.out.println("Enter number of Column");
+        int iCol = sobj.nextInt();
+
+        Pattern pobj = new Pattern();
+        pobj.pattern(iRow,iCol);
+    }
+}
