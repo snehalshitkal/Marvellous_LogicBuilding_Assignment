@@ -1,36 +1,34 @@
 /*
-    Write a program which Checks wheater 15th bit is ON or OFF.
+write a program which accept one number from user and off 7th bit of that number if it is ON.
+Return modified number.
+input:  79
+output: 15
 */
-
 #include<iostream>
 using namespace std;
-typedef unsigned int UNIT;
-bool CheckBit(UNIT iNo)
+
+typedef unsigned int UINT;
+
+UINT ChangeBit(UINT iNo)     
 {
-    UNIT iMask =16338;
-    UNIT iResult = 0;
+    UINT iMask = 4294967231;
+    UINT iResult = 0;
 
     iResult = iNo & iMask;
-    return (iResult == iMask);
 
-    
+    return iResult;
 }
+
 int main()
 {
-    UNIT iValue = 0;
-    bool bRet = false;
+    UINT iValue = 0, iRet = 0;
 
-    cout<<"Enter number from user:\n";
+    cout<<"Enter number : \n";
     cin>>iValue;
 
-    bRet = CheckBit(iValue);
-    if(bRet == true)
-    {
-        cout<<"15th bit is ON:\n";
-    }
-    else
-    {
-        cout<<"15th bit is OFF:\n";
-    }
+    iRet = ChangeBit(iValue);
+
+    cout<<"Updated number is : "<<iRet<<"\n";
+
     return 0;
 }

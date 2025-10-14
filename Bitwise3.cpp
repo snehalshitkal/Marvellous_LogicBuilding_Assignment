@@ -1,35 +1,38 @@
 /*
-Write a program which check whether 7th and 15th & 21th ,28bit bit ON or OFF.
+write a program which accept one number from user and toggle 7th of that number if it is ON.Return modified number.
+input:  137
+output: 201
 */
-
 #include<iostream>
 using namespace std;
+
 typedef unsigned int UINT;
-bool CheckBit(UINT iNo)
+
+UINT ToggleBit(UINT iNo, UINT iPos)
 {
-    UINT iMask = 537935936;
+    UINT iMask = 1;
     UINT iResult = 0;
-    iResult = iNo & iMask;
 
-    return (iResult == iMask);
+    iMask = iMask << (iPos - 1);
 
+    iResult = iNo ^ iMask;
+
+    return iResult;
 }
+
 int main()
 {
-    UINT iValue = 0;
-    bool bRet = true;
+    UINT iValue = 0, iLocation = 0, iRet = 0;
 
-    cout<<"Enter Number from user:\n";
+    cout<<"Enter number : \n";
     cin>>iValue;
 
-    bRet = CheckBit(iValue);
-    if(bRet == true)
-    {
-        cout<<"7th and 15th & 21th ,28bit bit ON\n";
-    }
-    else
-    {
-        cout<<"7th and 15th & 21th ,28bit bit OFF\n";
-    }
+    cout<<"Enter the position : \n";
+    cin>>iLocation;
+
+    iRet = ToggleBit(iValue, iLocation);
+
+    cout<<"Updated number is : "<<iRet<<"\n";
+
     return 0;
 }

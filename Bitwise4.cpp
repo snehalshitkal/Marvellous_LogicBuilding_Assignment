@@ -1,35 +1,48 @@
+
 /*
-Write a program which check whether 7th and 8th & 9th bit ON or OFF.
+write a program which accept one number from user and toggle 7th and 10 th bit of number.
+return modified number.
+input: 137
+output: 713
 */
 
 #include<iostream>
 using namespace std;
 typedef unsigned int UINT;
-bool CheckBit(UINT iNo)
+
+UINT OffBitMultiple(UINT iNo, UINT iPos1, UINT iPos2)
 {
-    UINT iMask = 448;
+    UINT iMask1 = 1;
+    UINT iMask2 = 1;
     UINT iResult = 0;
-    iResult = iNo & iMask;
 
-    return (iResult == iMask);
+    iMask1 = iMask1 << (iPos1 - 1);
+    iMask2 = iMask2 << (iPos2 - 1);
+    
+    iMask1 = ~iMask1;
+    iMask2 = ~iMask2;
+    
+    iResult = iNo & (iMask1 & iMask2);
 
+    return iResult;
 }
+
 int main()
 {
-    UINT iValue = 0;
-    bool bRet = true;
+    UINT iValue = 0,iRet = 0, iLocation1 = 0, iLocation2 = 0;
 
-    cout<<"Enter Number from user:\n";
+    cout<<"Enter number : \n";
     cin>>iValue;
 
-    bRet = CheckBit(iValue);
-    if(bRet == true)
-    {
-        cout<<"7th and 8th & 9th bit ON\n";
-    }
-    else
-    {
-        cout<<"7th and 8th & 9th bit OFF\n";
-    }
+    cout<<"Enter first position : \n";
+    cin>>iLocation1;
+
+    cout<<"Enter second position : \n";
+    cin>>iLocation2;
+
+    iRet = OffBitMultiple(iValue,iLocation1,iLocation2);
+
+    cout<<"Updated number is : "<<iRet<<"\n";
+
     return 0;
 }

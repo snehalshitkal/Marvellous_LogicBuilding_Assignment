@@ -1,36 +1,29 @@
 /*
-Write a program which check whether first and last bit is ON or OFF.
-First it means bit number 1 and last bit means bit number 32.
+write a program which accept one number from user and ON first 4 bits.
+Return modified number.
+input:  73
+output: 79
 */
-
 #include<iostream>
 using namespace std;
 typedef unsigned int UINT;
-bool CheckBit(UINT iNo)
+UINT ONBit(UINT iNo)
 {
-    UINT iMask = 2147483649;
+    UINT iMask = 0xF;
     UINT iResult = 0;
-    iResult = iNo & iMask;
 
-    return (iResult == iMask);
+    iResult = iNo | iMask;
 
+    return iResult;
 }
 int main()
 {
-    UINT iValue = 0;
-    bool bRet = true;
-
+    UINT iValue = 0, iRet = 0;
+    
     cout<<"Enter Number from user:\n";
     cin>>iValue;
 
-    bRet = CheckBit(iValue);
-    if(bRet == true)
-    {
-        cout<<"first and last bit are ON\n";
-    }
-    else
-    {
-        cout<<"first and last bit are OFF\n";
-    }
+    iRet = ONBit(iValue);
+    cout<<"Updated Number are:"<<iRet;
     return 0;
 }
