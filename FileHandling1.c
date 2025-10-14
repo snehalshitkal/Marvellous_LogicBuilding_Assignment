@@ -1,30 +1,51 @@
 /*
-Write appliation which accept file name from user and open that file in read mode
+    Write a program which accpet file name from user and count
+    number of capital character from that file
 */
+
 #include<stdio.h>
-#include<unistd.h>
 #include<stdlib.h>
 #include<fcntl.h>
 #include<string.h>
-int main()
+#include<unistd.h>
+#define BUFFER_SIZE 1024
+int CountSmall(char FName[])
 {
-    int fd;
-    char Fname[50]={'\0'};
+    int fd = 0,iCnt= 0,CountCap=0,iRet = 0;
+    char Buffer[BUFFER_SIZE]={'\0'};
 
-    printf("Enter the name of file that you want to open:");
-    scanf("%s",Fname);
-
-    fd=open(Fname,O_RDONLY);
-
-    if(fd==-1)
+    fd = open(FName,O_RDONLY);
+    if(fd == -1)
     {
-        printf("Invalid File:\n");
+        printf("Unable to open file:\n");
     }
     else
     {
-        printf("File is open successfully with fd :%d",fd);
+        printf("File is Successfully open:  %d\n",fd);
+
+        while((iRet=read(fd,Buffer,BUFFER_SIZE))!=0)
+        {
+            for(iCnt = 0;iCnt<iRet;iCnt++)
+            {
+                if((Buffer[iCnt]>='a')&&(Buffer[iCnt]<'z'))
+                {
+                    CountCap++;
+                }
+            }
+        } 
         close(fd);
     }
+    return CountCap;
+}
+int main()
+{
+    char FileName[30]={'\0'};
+    int Result = 0;
 
+    printf("Enter the File name:\n");
+    scanf("%s",FileName);
+
+    Result = CountSmall(FileName);
+    printf("Number of small letter are:  %d",Result);
     return 0;
 }

@@ -1,6 +1,6 @@
 /*
     Write a program which accpet file name from user and count
-    number of small character from that file
+    number of white spaces from that file
 */
 
 #include<stdio.h>
@@ -10,9 +10,9 @@
 #include<string.h>
 #include<unistd.h>
 #define BUFFER_SIZE 1024
-int CountCapital(char FName[])
+int CountSpace(char FName[])
 {
-    int fd = 0,iCnt= 0,CountCap=0,iRet = 0;
+    int fd = 0,iCnt= 0,Countspace=0,iRet = 0;
     char Buffer[BUFFER_SIZE]={'\0'};
 
     fd = open(FName,O_RDONLY);
@@ -28,15 +28,15 @@ int CountCapital(char FName[])
         {
             for(iCnt = 0;iCnt<iRet;iCnt++)
             {
-                if((Buffer[iCnt]>='A')&&(Buffer[iCnt]<'Z'))
+                if(Buffer[iCnt] ==' ')
                 {
-                    CountCap++;
+                    Countspace++;
                 }
             }
         } 
         close(fd);
     }
-    return CountCap;
+    return Countspace;
 }
 int main()
 {
@@ -46,7 +46,7 @@ int main()
     printf("Enter the File name:\n");
     scanf("%s",FileName);
 
-    Result = CountCapital(FileName);
-    printf("Number of Capital letter are:  %d",Result);
+    Result = CountSpace(FileName);
+    printf("Number of white spaces are:  %d",Result);
     return 0;
 }
