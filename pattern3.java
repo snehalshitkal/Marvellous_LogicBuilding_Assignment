@@ -1,0 +1,45 @@
+/*
+       *    *
+       **   **
+       ***  ***
+       **** ****
+       **********   
+ */
+
+import java.util.*;
+class pattern3
+{
+    public static void main(String A[])
+    {
+        Scanner sobj = new Scanner(System.in);
+
+        System.out.println("Enter number of pattern want: ");
+        int num = sobj.nextInt();
+
+        int i = 0,j = 0,k = 0;
+
+         for (i = 1; i <= num; i++) 
+         {
+            
+            for (j = 1; j <= i; j++) 
+            {
+                System.out.print("*");
+            }
+
+            for (j = 1; j <= 2 * (num - i); j++)
+             {
+                System.out.print(" ");
+            }
+
+            
+            for (j = 1; j <= i; j++) 
+            {
+                System.out.print("*");
+            }
+           
+
+            System.out.println();
+        }
+         
+    }
+}
